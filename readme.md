@@ -20,33 +20,46 @@ Application (with the embedded H2 database) is ready to be used ! You can access
 - extract the zip file in this folder
 - commit and push
 
-- Enhance the code in any ways you can see, you are free! Some possibilities:
-  - Add tests
-  - Change syntax
-  - Protect controller end points
-  - Add caching logic for database calls
-  - Improve doc and comments
-  - Fix any bug you might find
-- Edit readme.md and add any comments. It can be about what you did, what you would have done if you had more time, etc.
-- Send us the link of your repository.
 
 #### Restrictions
 - use java 8
 
+#### Lombok Setup
+If Lombok is not set up in Eclipse, getters/setters will not be generated, and a compile error will occur even if the project is imported Lombok. Therefore, set up Lombok by referring to the following.
 
-#### What we will look for
-- Readability of your code
-- Documentation
-- Comments in your code 
-- Appropriate usage of spring boot
-- Appropriate usage of packages
-- Is the application running as expected
-- No performance issues
+Setup eclipse Lombok plugin : https://projectlombok.org/setup/eclipse
 
-#### Your experience in Java
+Go to help -> About Eclipse IDE -> check for lombok plugin
 
-Please let us know more about your Java experience in a few sentences. For example:
+#### Authentication 
 
-- I have 3 years experience in Java and I started to use Spring Boot from last year
-- I'm a beginner and just recently learned Spring Boot
-- I know Spring Boot very well and have been using it for many years
+All api/v1/** urls are Authenticated. 
+
+Please use the following credentials to login.
+
+username : test
+
+password : P@ssw0rd
+
+#### Link to HELP document
+
+Javadoc has been created for the following project, please check Javadoc for the understanding of classes, methods, variables, constants, and tests.
+
+#### Junit Test
+
+Junit test is added for repository and controller layers.
+
+#### Code Enhancement Spot/ Things can be improve further
+
+Currently Application is using default spring security login/logout pages, Custom login/logout pages can be created.
+
+Currently an user is hard coded in server memory (in memory), Custom Sigup page can be added.
+
+- Curretly application performing service memory Authentication , we can store the user data inside database and can perform the JDBC  Authentication Instead. 
+
+- currently appilication is not restricted on user role basis, but some apis can be restricted on role/Authority basis.
+
+
+#### Experience in Java
+
+- I have almost 3 years of experience in Java and 1.5 years of hands on Experience on Spring Boot
