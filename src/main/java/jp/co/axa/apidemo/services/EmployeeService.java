@@ -4,6 +4,10 @@ import jp.co.axa.apidemo.entities.Employee;
 
 import java.util.List;
 
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
+
 
 /**
  * Provides Employee Information with the extension of services to update, delete and save the Employees
@@ -26,28 +30,32 @@ public interface EmployeeService {
      * @param employeeId employee's Id
      * @return Employee
      */
+    @Cacheable(cacheNames = "employee", key ="#employeeId")
     public Employee getEmployee(Long employeeId);
     
     
-
     /**
      * To save a new Employee
      * 
      * @param employee  Employee Object
+     * @return saved Employee
      */
-    public void saveEmployee(Employee employee);
+    public Employee saveEmployee(Employee employee);
 
     /**
      * To delete an Employee
      * 
      * @param employeeId employee's Id
      */
+    @CacheEvict(cacheNames = "employee", key = "#employeeId")
     public void deleteEmployee(Long employeeId);
 
     /**
      * To Update an Employee
      * 
      * @param employee Employee Object
+     * @return updated Employee
      */
-    public void updateEmployee(Employee employee);
+    @CachePut(cacheNames = "employee", key = "#employee.id")
+    public Employee updateEmployee(Employee employee);
 }

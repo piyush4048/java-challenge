@@ -3,22 +3,28 @@ package jp.co.axa.apidemo.controllers;
 import jp.co.axa.apidemo.entities.Employee;
 import jp.co.axa.apidemo.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 /**
  * Employee Related Controller
+ * Caching Enabled
+ * 
  */
 @RestController
 @RequestMapping("/api/v1")
+@EnableCaching
+@CacheConfig(cacheNames = "employee")
 public class EmployeeController {
 
     @Autowired
     private EmployeeService employeeService;
 
     /**
-     * To get all Employees information
+     * To get all employees information
      * 
      * @return Employees List
      */
@@ -29,7 +35,7 @@ public class EmployeeController {
     }
 
     /**
-     * To get Specific Employee
+     * To get a specific employee
      * 
      * @param employeeId Employee's Id
      * @return Employee An Employee Entity
@@ -43,11 +49,11 @@ public class EmployeeController {
      * To Save a new Employee
      * 
      * @param employee Employee Entity to save
+     * @return saved Entity
      */
     @PostMapping("/employees")
-    public void saveEmployee(@RequestBody Employee employee){
-        employeeService.saveEmployee(employee);
-        System.out.println("Employee Saved Successfully");
+    public Employee saveEmployee(@RequestBody Employee employee){
+       return employeeService.saveEmployee(employee);
     }
 
     /**
@@ -66,15 +72,16 @@ public class EmployeeController {
      * 
      * @param employee Employee entity to update
      * @param employeeId id of employee
+     * @return updated Entity
      */
     @PutMapping("/employees/{employeeId}")
-    public void updateEmployee(@RequestBody Employee employee,
+    public Employee updateEmployee(@RequestBody Employee employee,
                                @PathVariable(name="employeeId")Long employeeId){
         Employee emp = employeeService.getEmployee(employeeId);
         if(emp != null){
         	employee.setId(employeeId);
-            employeeService.updateEmployee(employee);
+          return  employeeService.updateEmployee(employee);
         }
+        return null;
     }
-
 }
