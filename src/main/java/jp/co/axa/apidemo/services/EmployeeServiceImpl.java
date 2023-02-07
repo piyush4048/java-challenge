@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * Implementation class of EmployeeService
+ * Implementation class for EmployeeService
  *
  */
 @Service
@@ -27,12 +27,13 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public Employee getEmployee(Long employeeId) {
         Optional<Employee> optEmp = employeeRepository.findById(employeeId);
+        System.out.println("called DB");
         return optEmp.get();
     }
 
     @Override
-    public void saveEmployee(Employee employee){
-        employeeRepository.save(employee);
+    public Employee saveEmployee(Employee employee){
+        return employeeRepository.save(employee);
     }
     
     @Override
@@ -41,7 +42,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void updateEmployee(Employee employee) {
-        employeeRepository.save(employee);
+    public Employee updateEmployee(Employee employee) {
+        return employeeRepository.save(employee);
     }
 }

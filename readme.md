@@ -43,11 +43,11 @@ password : P@ssw0rd
 
 #### Link to HELP document
 
-Javadoc has been created for the following project, please check Javadoc for the understanding of classes, methods, variables, constants, and tests.
+Javadoc has been created for the following project, please check Javadoc for the understanding of classes, methods, variables, and tests.
 
 #### Junit Test
 
-Junit test is added for repository and controller layers.
+Junit test is added for repository, controller, and caching layers.
 
 #### Code Enhancement Spot/ Things can be improve further
 
@@ -59,7 +59,27 @@ Currently an user is hard coded in server memory (in memory), Custom Sigup page 
 
 - currently appilication is not restricted on user role basis, but some apis can be restricted on role/Authority basis.
 
+Currenly caching logic implemented without any conditions. Conditions can be further applied to the caching logic.
+
+#### Postman API request 
+
+Since the URL of the endpoints are secure, add an Authorization header while sending the request to avoid the below error.
+("status": 401,
+"error": "Unauthorized")
+
+Go to Authorization -> Select Type ( Basic Auth) -> Provide the credentials. (username : test , password : P@ssw0rd)
+
+#### CURL Request
+
+Add an user header with the curl request for authentication, like below:
+
+Curl -X POST -H "Content-Type: application/json" -d "{data}" -u "test:P@ssw0rd"
+
+#### Caching
+
+Caching logic improves application efficiency and eliminates database calls
+
 
 #### Experience in Java
 
-- I have almost 3 years of experience in Java and 1.5 years of hands on Experience on Spring Boot
+- I have almost 3 years of experience in Java and 1 year of hands on Experience on Spring Boot
